@@ -14,7 +14,9 @@ public class Calculator {
 
 		for(String number : numbers.split(delimiter)) {
 			try {
-				result += Integer.valueOf(number);
+				if(Integer.valueOf(number) < 1000) {
+					result += Integer.valueOf(number);
+				}
 			}catch(java.lang.NumberFormatException e) {
 				if(number.matches("-[0-9]+")) {
 					doThrow = true;

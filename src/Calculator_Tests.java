@@ -84,4 +84,14 @@ class Calculator_Tests {
 		} catch(Exception e) {}
 	}
 	
+	@Test
+	void testAddBigger() {
+		Calculator calc = new Calculator();
+		try {
+			assertEquals(3, calc.Add("3,1000"));
+			assertEquals(10, calc.Add("4,1003,6"));
+			assertEquals(18, calc.Add("3,6,2452,8,1"));
+			assertEquals(19, calc.Add("8,4,3,2,1030,1,1"));
+		} catch(Exception e) {}
+	}
 }
