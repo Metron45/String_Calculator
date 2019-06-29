@@ -30,4 +30,12 @@ class Calculator_Tests {
 		assertEquals(0, calc.Add("a"));
 	}
 	
+	@Test
+	void testAddNewLine() {
+		Calculator calc = new Calculator();
+		assertEquals(3, calc.Add("3"));
+		assertEquals(10, calc.Add("4\n6"));
+		assertEquals(18, calc.Add("3,6\n8,1"));
+		assertEquals(20, calc.Add("8,4,3\n2,1\n1,1"));
+	}
 }
