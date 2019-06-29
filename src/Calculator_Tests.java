@@ -94,4 +94,15 @@ class Calculator_Tests {
 			assertEquals(19, calc.Add("8,4,3,2,1030,1,1"));
 		} catch(Exception e) {}
 	}
+	
+	@Test
+	void testAddDelimiterBrackets() {
+		Calculator calc = new Calculator();
+		try {
+			assertEquals(3, calc.Add("//[k]\n3"));
+			assertEquals(10, calc.Add("//[;]\n4;6"));
+			assertEquals(10, calc.Add("//[;s]\n4;s6"));
+			assertEquals(10, calc.Add("//[***]\n1***2***3"));
+		} catch(Exception e) {}
+	}
 }

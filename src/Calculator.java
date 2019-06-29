@@ -9,6 +9,9 @@ public class Calculator {
 		
 		if(numbers.matches("//.+\\n.+")) {
 			delimiter = numbers.split("\\n", 2)[0].substring(2);
+			if(delimiter.matches("\\[.+\\]")) {
+				delimiter = delimiter.substring(1, delimiter.length()-1);
+			}
 			numbers = numbers.split("\\n", 2)[1];
 		}
 
