@@ -38,4 +38,13 @@ class Calculator_Tests {
 		assertEquals(18, calc.Add("3,6\n8,1"));
 		assertEquals(20, calc.Add("8,4,3\n2,1\n1,1"));
 	}
+	
+	@Test
+	void testAddDelimiter() {
+		Calculator calc = new Calculator();
+		assertEquals(3, calc.Add("//k\n3"));
+		assertEquals(10, calc.Add("//;\n4;6"));
+		assertEquals(10, calc.Add("//;s\n4;s6"));
+	}
+	
 }
