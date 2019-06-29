@@ -103,6 +103,11 @@ class Calculator_Tests {
 			assertEquals(10, calc.Add("//[;]\n4;6"));
 			assertEquals(10, calc.Add("//[;s]\n4;s6"));
 			assertEquals(10, calc.Add("//[***]\n1***2***3"));
+			assertEquals(3, calc.Add("//[k][y]\n3"));
+			assertEquals(15, calc.Add("//[;][d]\n4;6d5"));
+			assertEquals(13, calc.Add("//[;s][sd]\n4;s6sd1sd2"));
+			assertEquals(15, calc.Add("//[***][fg]\n1***fg5***2***3"));
+			assertEquals(6, calc.Add("//[*][%]\\n1*2%3"));
 		} catch(Exception e) {}
 	}
 }

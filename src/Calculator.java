@@ -3,19 +3,23 @@ public class Calculator {
 	
 	int Add(String numbers) throws Exception {
 		int result = 0;
-		String delimiter = ",|\\n";
+		String delimiters = ",|\\n";
 		boolean doThrow = false; 
 		String negatives = "";
 		
 		if(numbers.matches("//.+\\n.+")) {
-			delimiter = numbers.split("\\n", 2)[0].substring(2);
-			if(delimiter.matches("\\[.+\\]")) {
-				delimiter = delimiter.substring(1, delimiter.length()-1);
+			delimiters = numbers.split("\\n", 2)[0].substring(2);
+			if(delimiters.matches("\\[.+\\]")) {
+				String tempDelimiters = "";
+				for(String delimiter : delimiters.split("\\[")) {
+					tempDelimiters.concat("|(" + delimiter.substring(0, delimiters.length()-1) + ")");
+				}
+				delimiters = tempDelimiters.substring(1, delimiters.length());
 			}
 			numbers = numbers.split("\\n", 2)[1];
 		}
 
-		for(String number : numbers.split(delimiter)) {
+		for(String number : numbers.split(delimiters)) {
 			try {
 				if(Integer.valueOf(number) < 1000) {
 					result += Integer.valueOf(number);
