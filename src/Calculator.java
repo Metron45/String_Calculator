@@ -1,17 +1,21 @@
 
 public class Calculator {
-	int Add(String numbers) {
-		if(numbers.equals("")) {
-			return 0;
-		}else {
-			String[] num = numbers.split(",");
-			if(num.length == 1) {
-				return Integer.valueOf(num[0]);
-			}
-			else if(num.length == 2) {
-				return Integer.valueOf(num[0]) + Integer.valueOf(num[1]);
-			}
-		}
-		return 0;
+	
+	public static void main(String[] args) {
+		Calculator calc = new Calculator();
+		System.out.println(calc.Add(""));
+		System.out.println(calc.Add("2,3"));
+		System.out.println(calc.Add("4,5,6,7,7"));
 	}
+	
+	int Add(String numbers) {
+		int result = 0;
+		for(String number : numbers.split(",")) {
+			try {
+				result += Integer.valueOf(number);
+			}catch(java.lang.NumberFormatException e) {}
+		}
+		return result;
+	} 
+	
 }
