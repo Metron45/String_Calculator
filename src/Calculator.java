@@ -1,14 +1,9 @@
 
 public class Calculator {
-	
-	int Add(String numbers) throws Exception {
-		int result = 0;
-		String delimiters = ",|\\n";
-		boolean doThrow = false; 
-		String negatives = "";
-		
+
+	String setDelimeters(String numbers) {
 		if(numbers.matches("//.+\\n.+")) {
-			delimiters = numbers.split("\\n", 2)[0].substring(2);
+			String delimiters = numbers.split("\\n", 2)[0].substring(2);
 			if(delimiters.matches("\\[.+\\]")) {
 				String tempDelimiters = "";
 				for(String delimiter : delimiters.split("\\[")) {
@@ -16,6 +11,18 @@ public class Calculator {
 				}
 				delimiters = tempDelimiters.substring(1, delimiters.length());
 			}
+			return delimiters;
+		}
+		return ",|\\n";
+	}
+	
+	int Add(String numbers) throws Exception {
+		int result = 0;
+		boolean doThrow = false;  
+		String negatives = "";
+		
+		String delimiters = setDelimeters(numbers);
+		if(numbers.matches("//.+\\n.+")) {
 			numbers = numbers.split("\\n", 2)[1];
 		}
 
@@ -33,9 +40,13 @@ public class Calculator {
 		}
 		
 		if(doThrow == true) {
-			throw new Exception("negatives not allowed" + negatives);
+			throw new Exception("negatives not allowed " + negatives);
 		}
 		
 		return result;
 	} 
+	
+
+	
+	
 }

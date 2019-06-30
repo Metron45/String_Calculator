@@ -64,24 +64,19 @@ class Calculator_Tests {
 	public final ExpectedException exception = ExpectedException.none();
 	
 	@Test
-	void testAddNegative() {
+	void testAddNegative() throws Exception {
 		Calculator calc = new Calculator();
 		exception.expect(Exception.class);
-		try {
-			calc.Add("//k\n-3");
-		} catch(Exception e) {}
-		try {
-			calc.Add("//;s\n-4;s6");
-		} catch(Exception e) {}
-		try {
-			calc.Add("-3");
-		} catch(Exception e) {}
-		try {
-			calc.Add("-4,-6");
-		} catch(Exception e) {}
-		try {
-			calc.Add("-8,4,-3,2,-1,1,1");
-		} catch(Exception e) {}
+		exception.expectMessage("negatives not allowed -3");
+		calc.Add("-3");
+	}
+	
+	@Test
+	void testAddNegativeMultiple() throws Exception {
+		Calculator calc = new Calculator();
+		exception.expect(Exception.class);
+		exception.expectMessage("negatives not allowed -3 -4");
+		calc.Add("-3,-4");
 	}
 	
 	@Test
